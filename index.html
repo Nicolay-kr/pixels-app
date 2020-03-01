@@ -21,7 +21,7 @@
         <div class="columns is-desktop">
           <div class="column">
             <div class="app">
-              <div class="view">
+              <div class="view" id="canvas">
                 <div class="pixel"></div>
                 <div class="pixel"></div>
                 <div class="pixel"></div>
@@ -276,50 +276,51 @@
                 <div class="pixel"></div>
               </div>
             </div>
+            <h3>14x18</h3>
           </div>
           <div class="column">
             <div class="tools">
-              <div class="tool">
+              <div class="tool tool-selected" id="tool-pencil">
                 <div class="tool-icon"
                   style="background-image: url(&quot;data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9JzMwMHB4JyB3aWR0aD0nMzAwcHgnICBmaWxsPSIjMDAwMDAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMTAwIDEwMCIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PHBhdGggZD0iTTc5LjMsNS43Yy0xLTEtMi42LTEtMy41LDBMMTMuMiw2OC4yYy0wLjEsMC4xLTAuMiwwLjMtMC4zLDAuNGMwLDAsMCwwLjEtMC4xLDAuMWMtMC4xLDAuMS0wLjEsMC4yLTAuMiwwLjRjMCwwLDAsMCwwLDAuMSAgTDUuMSw5MS43Yy0wLjMsMC45LTAuMSwxLjksMC42LDIuNkM2LjIsOTQuNyw2LjgsOTUsNy41LDk1YzAuMywwLDAuNSwwLDAuOC0wLjFsMjIuNS03LjVjMCwwLDAsMCwwLjEsMGMwLjEsMCwwLjItMC4xLDAuNC0wLjIgIGMwLDAsMC4xLDAsMC4xLTAuMWMwLjItMC4xLDAuMy0wLjIsMC40LTAuM2w2Mi41LTYyLjVjMS0xLDEtMi42LDAtMy41TDc5LjMsNS43eiBNMTUuNyw4Ny4xbC0yLjgtMi44bDMuMi05LjdsOS4zLDkuM0wxNS43LDg3LjF6ICAgTTMwLDgxLjVMMTguNSw3MGw1OS01OUw4OSwyMi41TDMwLDgxLjV6Ij48L3BhdGg+PC9zdmc+&quot;);">
                 </div>
               </div>
-              <div class="tool">
+              <div class="tool" id="tool-brush">
                 <div class="tool-icon"
                   style="background-image: url(&quot;data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9JzMwMHB4JyB3aWR0aD0nMzAwcHgnICBmaWxsPSIjMDAwMDAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgeD0iMHB4IiB5PSIwcHgiPjx0aXRsZT5icnVzaDwvdGl0bGU+PGc+PHBhdGggZD0iTTExLjg2LDE2YS43NS43NSwwLDAsMS0uMjYsMCwxLDEsMCwwLDEtLjcxLS43MSwzLDMsMCwwLDAtMi4xMS0yLjExLDEsMSwwLDAsMS0uNzEtLjcxLDEsMSwwLDAsMSwuMjUtMUwxNy42NSwyLjFhMywzLDAsMCwxLDQuMjUsMCwzLDMsMCwwLDEsLjg4LDIuMTIsMywzLDAsMCwxLS44NywyLjEybC05LjM0LDkuMzRBMSwxLDAsMCwxLDExLjg2LDE2Wm0tMS4xLTQuMTRhNC43NCw0Ljc0LDAsMCwxLDEuNDEsMS40MWw4LjMxLTguMzFhMSwxLDAsMCwwLC4zLS43MSwxLDEsMCwwLDAtMS43Mi0uN1oiPjwvcGF0aD48cGF0aCBkPSJNNCwyM0g0YTEsMSwwLDAsMS0uOS0uNjJjLTEuMjYtMy0uNTgtOCwxLjM4LTkuOTJhNSw1LDAsMCwxLDcuMDgsNy4wOGgwYTguMzEsOC4zMSwwLDAsMS0zLjc5LDEuNjVjLTEuMTYuMy0yLjU5LjY3LTIuODQsMS4yMkExLDEsMCwwLDEsNCwyM1pNOCwxM2EzLDMsMCwwLDAtMi4xMS44OGMtMS4wNiwxLTEuNzEsMy45Mi0xLjM1LDYuMjlhMTIuNzgsMTIuNzgsMCwwLDEsMi43Mi0uOTIsNy4yNyw3LjI3LDAsMCwwLDIuODctMS4xMywzLDMsMCwwLDAsLjc3LTIuODksMywzLDAsMCwwLTIuMTEtMi4xMkEzLDMsMCwwLDAsOCwxM1ptMi44NCw1LjgzaDBaIj48L3BhdGg+PC9nPjwvc3ZnPg==&quot;);">
                 </div>
               </div>
-              <div class="tool">
+              <div class="tool" id="tool-fill">
                 <div class="tool-icon"
                   style="background-image: url(&quot;data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9JzMwMHB4JyB3aWR0aD0nMzAwcHgnICBmaWxsPSIjMDAwMDAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGRhdGEtbmFtZT0iTGF5ZXIgMSIgdmlld0JveD0iMCAwIDEwMCAxMDAiIHg9IjBweCIgeT0iMHB4Ij48dGl0bGU+QXJ0Ym9hcmQgMjE8L3RpdGxlPjxwYXRoIGRhdGEtbmFtZT0iUGF0aCIgZD0iTTgzLjc1LDYwLjgyYTMzLjc1LDMzLjc1LDAsMCwxLTY3LjUsMEMxNi4yNSw0MCw0Mi4wNiwxMi41Nyw0OC41NCw2YTIsMiwwLDAsMSwyLjg4LDBDNTcuODIsMTIuODQsODMuNzUsNDEuNTUsODMuNzUsNjAuODJaIj48L3BhdGg+PC9zdmc+&quot;);">
                 </div>
               </div>
-              <div class="tool">
+              <div class="tool" id="tool-erase">
                 <div class="tool-icon"
                   style="background-image: url(&quot;data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9JzMwMHB4JyB3aWR0aD0nMzAwcHgnICBmaWxsPSIjMDAwMDAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OCA0OCIgeD0iMHB4IiB5PSIwcHgiPjx0aXRsZT5VaSB2b2wuMjwvdGl0bGU+PGcgZGF0YS1uYW1lPSJMYXllciAzIj48cGF0aCBkPSJNNDYuNjY3LDE5LjA5MjI5YTEuMDAwNCwxLjAwMDQsMCwwLDAtLjA1NTY2LTEuNDEzMDlMMjguNDUyMTUuOTEzMDlhMS4wMDA1NSwxLjAwMDU1LDAsMCwwLTEuNDEzMDkuMDU2NjRsLTE4LjE2LDE5LjY2ODE1LS4wMDExNi4wMDA3OS0uMDAwNzMuMDAxMjJMNC40NDk3MSwyNS40MzUwNmE3LjMxMjc1LDcuMzEyNzUsMCwwLDAsLjQxMjU5LDEwLjMzM2w4Ljg4MjgyLDguMjAxNjZhNy4yNjA1Myw3LjI2MDUzLDAsMCwwLDQuOTUzNjEsMS45Mzk5NHEuMTQ4NjgsMCwuMjk4MzQtLjAwNTg2YTcuNDEwNjgsNy40MTA2OCwwLDAsMCwuODMxNDItLjA4NDQ3SDQyLjM4NjcyYTEsMSwwLDAsMCwwLTJIMjMuODEyMTljLjA4ODkzLS4wODcxLjE4MTM0LS4xNjk2Mi4yNjY0Mi0uMjYxNzJaTTI3LjgzMDA4LDMuMDYxLDQ0LjUxOTUzLDE4LjQ3MDIxLDI3LjcxNTc2LDM2LjY3LDExLjAyNjA2LDIxLjI2MDY4Wk0xNS4xMDE1Niw0Mi41LDYuMjE4NzUsMzQuMjk4MzRhNS4zMTMsNS4zMTMsMCwwLDEtLjI5OTMyLTcuNTA2ODRsMy43NDk4OC00LjA2MTM0TDI2LjM1ODU4LDM4LjE0bC0zLjc0OTY5LDQuMDYxMjJBNS4zMTY3NCw1LjMxNjc0LDAsMCwxLDE1LjEwMTU2LDQyLjVaIj48L3BhdGg+PC9nPjwvc3ZnPg==&quot;);">
                 </div>
               </div>
-              <div class="colors">
-                <div class="color"></div>
-                <div class="color"></div>
-                <div class="color"></div>
-                <div class="color"></div>
-                <div class="color"></div>
-                <div class="color"></div>
-                <div class="color"></div>
-                <div class="color"></div>
-                <div class="color"></div>
-                <div class="color"></div>
-                <div class="color"></div>
-                <div class="color"></div>
-                <div class="color"></div>
-                <div class="color"></div>
-                <div class="color"></div>
-                <div class="color"></div>
-                <div class="color"></div>
-                <div class="color"></div>
-                <div class="color"></div>
-                <div class="color"></div>
+              <div class="colors" id="palette">
+                <div class="color color-selected" style="background: #fe0000;"></div>
+                <div class="color"  style="background: #fe9900;"></div>
+                <div class="color"  style="background: #ccff00;"></div>
+                <div class="color"  style="background: #32ff00;"></div>
+                <div class="color"  style="background: #00ff65;"></div>
+                <div class="color"  style="background: #800001;"></div>
+                <div class="color"  style="background: #804c00;"></div>
+                <div class="color"  style="background: #657f00;"></div>
+                <div class="color"  style="background: #197f00;"></div>
+                <div class="color"  style="background: #007f32;"></div>
+                <div class="color"  style="background: #00ffff;"></div>
+                <div class="color"  style="background: #0064ff;"></div>
+                <div class="color"  style="background: #3300ff;"></div>
+                <div class="color"  style="background: #cb00ff;"></div>
+                <div class="color"  style="background: #ff0098;"></div>
+                <div class="color"  style="background: #007f7e;"></div>
+                <div class="color"  style="background: #01327f;"></div>
+                <div class="color"  style="background: #19007f;"></div>
+                <div class="color"  style="background: #65007f;"></div>
+                <div class="color"  style="background: #7f014b;"></div>
               </div>
             </div>
           </div>
@@ -341,6 +342,7 @@
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
+      cursor: crosshair;
     }
 
     .pixel {
@@ -360,20 +362,27 @@
       flex-direction: column;
       flex-wrap: wrap;
       height: 300px;
+
     }
 
     .tool {
       width: 50px;
       height: 50px;
       margin-top: 5px;
-      border: solid 1px #333;
+      border: dashed 1px #333;
       background: #fff;
       padding: 12px 14px;;
+      cursor: pointer;
     }
     .tool:hover {
-
+      background: #eee;
     }
-
+    .tool:active {
+      background: #fff;
+    }
+    .tool-selected {
+      border: solid 2px #000;
+    }
     .tool-icon {
       color: #333;
       width: 20px;
@@ -396,6 +405,20 @@
       margin-top: 1px;
       background: #eee;
       border-radius: 20px;
+      cursor: pointer;
+      border-style: solid;
+      border-width: 5px;
+      border-color: #fff;
+      transition: border-width 0.2s, margin 0.2s;
+    }
+    .color:active {
+      opacity: 0.7;
+    }
+    .color:hover {
+      margin-top: -2px;
+    }
+    .color-selected {
+      border-width: 0px;
     }
   </style>
 
