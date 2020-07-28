@@ -1,64 +1,61 @@
 document.addEventListener('DOMContentLoaded', () => {
   let tools = document.querySelectorAll('.tool');
-  let pixels = document.querySelectorAll('.pixel');
   let colors = document.querySelectorAll('.color');
-  let select_color = document.querySelector('.color-selected');
-  let select_tool = document.querySelector('.tool-selected');
+  let selectColor = document.querySelector('.color-selected');
+  let selectTool = document.querySelector('.tool-selected');
+  let pixelsContainer = document.getElementById('canvas');
+  let pixels = pixelsContainer.children;
 
-  let get_tool = function(tool){
+  let getTool = function(tool){
     tool.addEventListener('click', function(){
       for(let i = 0; i < tools.length; i++){
         tools[i].classList.remove('tool-selected');
       }
       tool.classList.add('tool-selected');
-      select_tool = tool;
-      console.log(select_tool.id)
+      selectTool = tool;
+      console.log(selectTool.id)
     }) 
   }
   for(let i = 0; i < tools.length; i++){
-    get_tool(tools[i]);
+    getTool(tools[i]);
   }
 
-  let get_color = function(color){
+  let getColor = function(color){
     color.addEventListener('click', function(){
       for(let i = 0; i < colors.length; i++){
         colors[i].classList.remove('color-selected');
       }
       color.classList.add('color-selected');
-      select_color = color;
+      selectColor = color;
     })
   }
   for(let i = 0; i < colors.length; i++){
-    get_color(colors[i]);
+    getColor(colors[i]);
   }
-  
-  let get_pixel = function(pixel){
-    pixel.addEventListener('click', function(){
-      if(select_tool.id == 'tool-pencil'){
-        pixel.style.backgroundColor = select_color.style.backgroundColor;
-      }
-      else if(select_tool.id == 'tool-erase'){
-        pixel.style.backgroundColor = '#eee';
-      }
-      else if(select_tool.id == 'tool-fill'){
-        for(let i = 0; i < pixels.length; i++){
-          pixels[i].style.backgroundColor = select_color.style.backgroundColor;
-        }
-      }
-      else if(select_tool.id == 'tool-brush'){ 
-        for(let i = 0; i < pixels.length; i++){
-          if(pixels[i] == pixel){
-            pixels[i].style.backgroundColor = select_color.style.backgroundColor;
-            pixels[i+1].style.backgroundColor = select_color.style.backgroundColor;
-            pixels[i-1].style.backgroundColor = select_color.style.backgroundColor;
-            pixels[i+14].style.backgroundColor = select_color.style.backgroundColor;
-            pixels[i-14].style.backgroundColor = select_color.style.backgroundColor;
+
+  pixelsContainer.addEventListener('click',function(event){
+    if(selectTool.id == 'tool-pencil' & !event.target.id){
+      console.log(event.target);
+      event.target.style.backgroundColor = selectColor.style.backgroundColor;
+    }
+    else if(selectTool.id == 'tool-erase' & !event.target.id){
+      event.target.style.backgroundColor = '#eee';
           }
-        }
-      }
-    }) 
-  }
-  for(let i = 0; i < pixels.length; i++){
-    get_pixel(pixels[i]);
-  }
+          else if(selectTool.id == 'tool-fill'){
+            for(let i = 0; i < pixels.length; i++){
+              pixels[i].style.backgroundColor = selectColor.style.backgroundColor;
+            }
+          }
+          else if(selectTool.id == 'tool-brush'){ 
+            for(let i = 0; i < pixels.length; i++){
+              if(pixels[i] == event.target){
+                pixels[i].style.backgroundColor = selectColor.style.backgroundColor;
+                pixels[i+1].style.backgroundColor = selectColor.style.backgroundColor;
+                pixels[i-1].style.backgroundColor = selectColor.style.backgroundColor;
+                pixels[i+14].style.backgroundColor = selectColor.style.backgroundColor;
+                pixels[i-14].style.backgroundColor = selectColor.style.backgroundColor;
+              }
+            }
+          }
+  })
 });
