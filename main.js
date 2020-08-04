@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+  "use strick"
   let tools = document.querySelectorAll('.tool');
   let colors = document.querySelectorAll('.color');
   let selectColor = document.querySelector('.color-selected');
@@ -35,27 +36,64 @@ document.addEventListener('DOMContentLoaded', () => {
 
   pixelsContainer.addEventListener('click',function(event){
     if(selectTool.id == 'tool-pencil' & !event.target.id){
-      console.log(event.target);
       event.target.style.backgroundColor = selectColor.style.backgroundColor;
     }
+    
+    
     else if(selectTool.id == 'tool-erase' & !event.target.id){
       event.target.style.backgroundColor = '#eee';
           }
-          else if(selectTool.id == 'tool-fill'){
-            for(let i = 0; i < pixels.length; i++){
-              pixels[i].style.backgroundColor = selectColor.style.backgroundColor;
-            }
+
+
+    else if(selectTool.id == 'tool-fill'){
+      
+        let setColor = function(index,color){
+
+          pixels[index].style.backgroundColor = selectColor.style.backgroundColor;
+          
+          while(pixels[index+1] && (pixels[index+1].style.backgroundColor == color) ){
+            // console.log('-->');
+            let newIndex = index+1;
+            setColor(newIndex,color);
           }
-          else if(selectTool.id == 'tool-brush'){ 
-            for(let i = 0; i < pixels.length; i++){
-              if(pixels[i] == event.target){
-                pixels[i].style.backgroundColor = selectColor.style.backgroundColor;
-                pixels[i+1].style.backgroundColor = selectColor.style.backgroundColor;
-                pixels[i-1].style.backgroundColor = selectColor.style.backgroundColor;
-                pixels[i+14].style.backgroundColor = selectColor.style.backgroundColor;
-                pixels[i-14].style.backgroundColor = selectColor.style.backgroundColor;
-              }
-            }
+          
+          while(pixels[index-1] && (pixels[index-1].style.backgroundColor == color) ){
+            // console.log('<--');
+            let newIndex = index-1;
+            setColor(newIndex,color);
           }
+          
+          while(pixels[index-14] && pixels[index-14].style.backgroundColor == color){
+            // console.log('^');
+            let newIndex = index-14;
+            setColor(newIndex,color);
+          }
+
+          while(pixels[index+14] && pixels[index+14].style.backgroundColor == color){
+            // console.log('v');
+            let newIndex = index+14;
+            setColor(newIndex,color);
+          }
+        }
+      for(let i = 0; i < pixels.length; i++){
+        if(pixels[i] == event.target){
+          let curentPositionIndex = i;
+          let curentColor = event.target.style.backgroundColor;
+          setColor (curentPositionIndex,curentColor);
+          }
+        }
+    }
+    else if(selectTool.id == 'tool-brush'){ 
+      for(let i = 0; i < pixels.length; i++){
+        if(pixels[i] == event.target){
+          let row = Math.floor(i / 14) + 1
+          pixels[i].style.backgroundColor = selectColor.style.backgroundColor;
+          if(pixels[i+1] && row == (Math.floor((i+1) / 14) + 1)){pixels[i+1].style.backgroundColor = selectColor.style.backgroundColor;}
+          if(pixels[i-1] && row == (Math.floor((i-1) / 14) + 1)){pixels[i-1].style.backgroundColor = selectColor.style.backgroundColor;}
+          if(pixels[i+14]){pixels[i+14].style.backgroundColor = selectColor.style.backgroundColor;}
+          if(pixels[i-14]){pixels[i-14].style.backgroundColor = selectColor.style.backgroundColor;}
+        }
+      }
+    }
   })
 });
