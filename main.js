@@ -35,22 +35,25 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   pixelsContainer.addEventListener('click',function(event){
+    
 
     
-    if(selectTool.id == 'tool-pencil' & !event.target.id){
+    if(selectTool.id == 'tool-pencil' && !event.target.id){
       event.target.style.backgroundColor = selectColor.style.backgroundColor;
     }
     
     
-    else if(selectTool.id == 'tool-erase' & !event.target.id){
+    else if(selectTool.id == 'tool-erase' && !event.target.id){
       event.target.style.backgroundColor = '#eee';
           }
 
 
     else if(selectTool.id == 'tool-fill'){
+      var n = 0;
       
         let setColor = function(index,color){
-          // console.log(index);
+          // n += 1;
+          // pixels[index].textContent = n.toString();
           let row = Math.floor(index / 14) + 1
           pixels[index].style.backgroundColor = selectColor.style.backgroundColor;
           

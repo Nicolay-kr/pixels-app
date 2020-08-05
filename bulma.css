@@ -15,6 +15,9 @@
     transform: rotate(359deg);
   }
 }
+.pixel{
+  font-size: 10px;
+}
 
 .delete, .modal-close, .is-unselectable, .button, .file, .breadcrumb, .pagination-previous,
 .pagination-next,
