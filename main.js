@@ -35,6 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   pixelsContainer.addEventListener('click',function(event){
+
+    
     if(selectTool.id == 'tool-pencil' & !event.target.id){
       event.target.style.backgroundColor = selectColor.style.backgroundColor;
     }
@@ -48,41 +50,46 @@ document.addEventListener('DOMContentLoaded', () => {
     else if(selectTool.id == 'tool-fill'){
       
         let setColor = function(index,color){
-
+          // console.log(index);
+          let row = Math.floor(index / 14) + 1
           pixels[index].style.backgroundColor = selectColor.style.backgroundColor;
           
-          while(pixels[index+1] && (pixels[index+1].style.backgroundColor == color) ){
+          while(pixels[index+1] && (pixels[index+1].style.backgroundColor == color) && ((Math.floor((index+1) / 14) + 1) == row)){
             // console.log('-->');
             let newIndex = index+1;
             setColor(newIndex,color);
           }
           
-          while(pixels[index-1] && (pixels[index-1].style.backgroundColor == color) ){
+          while(pixels[index-1] && (pixels[index-1].style.backgroundColor == color) && ((Math.floor((index-1) / 14) + 1) == row) ){
             // console.log('<--');
             let newIndex = index-1;
             setColor(newIndex,color);
           }
           
           while(pixels[index-14] && pixels[index-14].style.backgroundColor == color){
+            row -= 1;
             // console.log('^');
             let newIndex = index-14;
             setColor(newIndex,color);
           }
 
           while(pixels[index+14] && pixels[index+14].style.backgroundColor == color){
+            row += 1;
             // console.log('v');
             let newIndex = index+14;
             setColor(newIndex,color);
           }
         }
       for(let i = 0; i < pixels.length; i++){
-        if(pixels[i] == event.target){
+        if((pixels[i] == event.target) && (event.target.style.backgroundColor != selectColor.style.backgroundColor)){
           let curentPositionIndex = i;
           let curentColor = event.target.style.backgroundColor;
           setColor (curentPositionIndex,curentColor);
           }
         }
     }
+
+
     else if(selectTool.id == 'tool-brush'){ 
       for(let i = 0; i < pixels.length; i++){
         if(pixels[i] == event.target){
